@@ -25,8 +25,23 @@ echo +++ looking for Java in standard places
 set PROGRAMS=%ProgramFiles%
 if defined ProgramFiles(x86) set PROGRAMS32=%ProgramFiles(x86)%
 
-IF not EXIST "%PROGRAMS%\Java\jre7\bin\java.exe" goto JAVA6
+IF not EXIST "%PROGRAMS%\Java\jre1.8.0_31\bin\java.exe" goto JAVA832
+set JAVA_HOME=%PROGRAMS%\Java\jre1.8.0_31
+goto JAVA_OK
+
+:JAVA832
+IF not EXIST "%PROGRAMS32%\Java\jre1.8.0_31\bin\java.exe" goto JAVA7
+set JAVA_HOME=%PROGRAMS32%\Java\jre1.8.0_31
+goto JAVA_OK
+
+:JAVA7
+IF not EXIST "%PROGRAMS%\Java\jre7\bin\java.exe" goto JAVA732
 set JAVA_HOME=%PROGRAMS%\Java\jre7
+goto JAVA_OK
+
+:JAVA732
+IF not EXIST "%PROGRAMS32%\Java\jre7\bin\java.exe" goto JAVA6
+set JAVA_HOME=%PROGRAMS32%\Java\jre7
 goto JAVA_OK
 
 :JAVA6
